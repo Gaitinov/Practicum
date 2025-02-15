@@ -5,30 +5,27 @@ a) Числа Армстронга: Напишите программу, кот�
 """
 limit = int(input("Введите число N, до которого нужно искать числа Армстронга: "))
 
-print("Числа Армстронга в диапазоне от 1 до", limit, ":")
+print(f"Числа Армстронга в диапазоне от 1 до {limit}:")
 
 for num in range(1, limit + 1):
-
-    original_num = num
-    digits_count = 0
-    temp_num = num
+    digits_count = 0  
+    temp_num = num  
 
     while temp_num > 0:
         digits_count += 1
-        temp_num //= 10
+        temp_num //= 10  
 
     powers_sum = 0
-    temp_sum_num = original_num
+    temp_num = num  
 
-    while temp_sum_num > 0:
-        digit = temp_sum_num % 10
-        power = digits_count
-        digit_power = digit ** power
-        powers_sum += digit_power
-        temp_sum_num //= 10
+    while temp_num > 0:
+        digit = temp_num % 10  
+        digit_power = digit ** digits_count  
+        powers_sum += digit_power  
+        temp_num //= 10  
 
-    if powers_sum == original_num:
-        print(original_num)
+    if powers_sum == num:
+        print(f"{num}")
 """
 б) Факториал: Вычислите N! ("эн-факториал") – произведение всех натуральных чисел от 1 до N ( N!=1∙2∙3∙…∙ N ). 
 Пример: Ввод: 3 Вывод: 6

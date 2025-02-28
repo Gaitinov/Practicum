@@ -1,106 +1,50 @@
 """
-a) Удаление элементов, которые встречаются только один раз:
-Дан список чисел, удалите из него все элементы, которые встречаются только один раз.
-Ввод: [4, 3, 5, 3, 4, 4, 7, 8]
-Вывод: [4, 3, 3, 4, 4]
+a) Числа Армстронга: Напишите программу, которая находит все числа Армстронга в диапазоне от 1 до N.
+Число Армстронга — это такое число, которое равно сумме своих цифр, возведенных в степень, равную количеству цифр этого числа.
+Например: Для числа 153: 1^3+5^3+3^3=153, значит 153 — число Армстронга.
 """
-print("# a) Удаление элементов, которые встречаются только один раз:")
-str_a = input("Введите список чисел, например: [4, 3, 5, 3, 4, 4, 7, 8]: ")
-list_a = eval(str_a)
+limit = int(input("Введите число N, до которого нужно искать числа Армстронга: "))
 
-counts_a = {}
-for num in list_a:
-    if num in counts_a:
-        counts_a[num] = counts_a[num] + 1
-    else:
-        counts_a[num] = 1
+print(f"Числа Армстронга в диапазоне от 1 до {limit}:")
 
-result_a = []
-for num in list_a:
-    if counts_a[num] > 1:
-        result_a = result_a + [num]
+for num in range(1, limit + 1):
+    digits_count = 0  
+    temp_num = num  
 
-print(f"Вывод: {result_a}")
+    while temp_num > 0:
+        digits_count += 1
+        temp_num //= 10  
 
+    powers_sum = 0
+    temp_num = num  
 
+    while temp_num > 0:
+        digit = temp_num % 10  
+        digit_power = digit ** digits_count  
+        powers_sum += digit_power  
+        temp_num //= 10  
+
+    if powers_sum == num:
+        print(f"{num}")
 """
-б) Наибольшая последовательность подряд идущих одинаковых чисел:
-Напишите функцию, которая принимает список чисел и возвращает наибольшую последовательность подряд идущих одинаковых чисел в этом списке.
-Если таких последовательностей несколько, вернуть первую.
-Ввод: [1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 5]
-Вывод: [4, 4, 4, 4]
+б) Факториал: Вычислите N! ("эн-факториал") – произведение всех натуральных чисел от 1 до N ( N!=1∙2∙3∙…∙ N ). 
+Пример: Ввод: 3 Вывод: 6
 """
-print("# б) Наибольшая последовательность подряд идущих одинаковых чисел:")
-str_b = input("Введите список чисел, например: [1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 5]: ")
-list_b = eval(str_b)
 
-if not list_b:
-    result_b = []
-else:
-    max_seq_b = []
-    current_seq_b = []
-    current_num_b = list_b[0]
-    current_seq_b = [current_num_b]
-
-    for i in range(1, len(list_b)):
-        num_b = list_b[i]
-        if num_b == current_num_b:
-            current_seq_b = current_seq_b + [num_b]
-        else:
-            if len(current_seq_b) > len(max_seq_b):
-                max_seq_b = current_seq_b
-            current_seq_b = [num_b]
-            current_num_b = num_b
-
-    if len(current_seq_b) > len(max_seq_b):
-        max_seq_b = current_seq_b
-
-    result_b = max_seq_b
-
-print(f"Вывод: {result_b}")
-
+num = int(input("Введите число для вычисления его факториала: "))
+factorial = 1
+while num>0:
+    factorial =  factorial *  num
+    num -= 1
+print(factorial)
 
 """
-c) Сортировка списка по количеству вхождений элементов:
-Дан список чисел. Отсортируйте его так, чтобы элементы с большим количеством вхождений шли раньше элементов с меньшим количеством вхождений.
-При равном количестве вхождений сохранить их исходный порядок.
-Ввод: [4, 3, 3, 2, 2, 2, 1]
-Вывод: [2, 2, 2, 3, 3, 4, 1]
+c) Выведите все натуральные делители числа x в порядке возрастания (включая 1 и само число).
+Ввод	Вывод
+32	    1 2 4 8 16 32
 """
-print("# c) Сортировка списка по количеству вхождений элементов:")
-str_c = input("Введите список чисел, например: [4, 3, 3, 2, 2, 2, 1]: ")
-list_c = eval(str_c)
 
-counts_c = {}
-for num in list_c:
-    if num in counts_c:
-        counts_c[num] = counts_c[num] + 1
-    else:
-        counts_c[num] = 1
-
-unique_elements_c = []
-processed_elements_c = []
-
-for num in list_c:
-    if num not in processed_elements_c:
-        unique_elements_c = unique_elements_c + [num]
-        processed_elements_c = processed_elements_c + [num]
-sorted_list_c = []
-while unique_elements_c:
-    max_count_element = unique_elements_c[0]
-    for element in unique_elements_c:
-        if counts_c[element] > counts_c[max_count_element]:
-            max_count_element = element
-
-    sorted_list_c_temp = []
-    for _ in range(counts_c[max_count_element]):
-        sorted_list_c_temp = sorted_list_c_temp + [max_count_element]
-    sorted_list_c = sorted_list_c + sorted_list_c_temp
-
-    next_unique_elements_c = []
-    for element in unique_elements_c:
-        if element != max_count_element:
-            next_unique_elements_c = next_unique_elements_c + [element]
-    unique_elements_c = next_unique_elements_c
-
-print(f"Вывод: {sorted_list_c}")
+num = int(input("Введите число для поиска делителей: "))
+for divisor in range(1, num + 1):
+    if num % divisor == 0:
+        print(divisor)

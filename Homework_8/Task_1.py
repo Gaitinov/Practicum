@@ -1,4 +1,3 @@
-
 """
 a) НОД двух чисел:
 Напишите функцию gcd(a, b), которая принимает два числа a и b и возвращает их наибольший общий делитель.
@@ -6,8 +5,8 @@ a) НОД двух чисел:
 Вывод: 6
 """
 print("# a) НОД двух чисел:")
-def gcd(a, b):
-    while b:
+def gcd(a, b): #  Это алгоритм Евклида, при том работает при любом случае 12 - 18 или 18 - 12
+    while b: # это пока b не равен нулю
         a, b = b, a % b
     return a
 
@@ -26,16 +25,16 @@ print(f"Вывод: {result_a}")
 """
 print("# б) Следующее простое число:")
 def is_prime(num):
-    if num < 2:
+    if num < 2: # Простые числа от  должны быть больше 1
         return False
-    for i in range(2, int(num ** 0.5) + 1):
+    for i in range(2, int(num ** 0.5) + 1): # быстрый способ проверить простое ли число
         if num % i == 0:
             return False
     return True
 
 def next_prime(n):
     num = n
-    while True:
+    while True: # бесконечный цикл
         if is_prime(num):
             return num
         num += 1
@@ -59,9 +58,9 @@ def fibonacci(n):
         return 0
     elif n == 1:
         return 1
-    a, b = 0, 1
-    for _ in range(2, n + 1):
-        a, b = b, a + b
+    a, b = 0, 1 #  значения для начала чисел Фибоначчи
+    for _ in range(2, n + 1): # просто до n
+        a, b = b, a + b  #  вычисление  следующее числа Фибоначчи
     return b
 
 print("Введите номер числа Фибоначчи (например, 5):")

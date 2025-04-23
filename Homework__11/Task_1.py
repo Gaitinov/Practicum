@@ -55,6 +55,7 @@ print(item1.get_product_info())
 item2 = Product("Тетрадь", 50.0, 100)
 print(item2.get_product_info())
 
+
 print("\n--- Обновление и пополнение ---")
 item1.update_price(15.5)
 print("Ручка после обновления цены:", item1.get_product_info())

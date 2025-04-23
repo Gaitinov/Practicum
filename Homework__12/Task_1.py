@@ -19,6 +19,7 @@
 
 import math  # Импорт модуля math для pi
 
+
 # Объявление класса Shape
 class Shape:
     # Определение метода GetArea (абстрактный)
